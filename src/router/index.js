@@ -157,7 +157,7 @@ var routes = [
       name: 'UserCenter',
       meta: {
         title: '创想空间',
-        needLogin:true,
+        //needLogin:true,
       },
       //component: HelloVux
       component: function (resolve) {
