@@ -35,6 +35,8 @@ function setHttpSessionKey(){
 
     }else if(typeof data=="string"&&data.indexOf("=")>-1){
       data += "&session_key_1="+mainConfig.tokenKey;
+    }else if(typeof data=='object'){
+      data=JSON.stringify(data)
     }
     return data;
   }];
@@ -97,7 +99,7 @@ function _checkLogin(cb){
         session_key_1:tokenKey
       },*/
       data:{
-        session_key_1:tokenKey
+        "session_key_1":tokenKey
       }
     }).then(
       res=>{
