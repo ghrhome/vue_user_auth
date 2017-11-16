@@ -145,20 +145,30 @@
         }
 
 
+        let _dataStr=JSON.stringify({
+          data:{
+            mobile: this.phoneNum,
+            validateMobile:true,
+            channel:'register'
+          },
+          session_key_1:tokenKey
+        })
+
         this.$http(
           {
-            method: 'get',
+            method: 'post',
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
 
             url: baseUrl+'user/sendSmsForVerifyCode.htm',
-            params: {
+           /* params: {
               data:{
                 mobile: this.phoneNum,
                 validateMobile:true,
                 channel:'register'
               },
               session_key_1:tokenKey
-            },
+            },*/
+           data:"data="+_dataStr
           }
         ).then(
           res=> {
@@ -208,17 +218,15 @@
 
         this.$http(
           {
-            method: 'get',
+            method: 'post',
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             url:  baseUrl+'user/register.htm',
-            params: {
-              data:{
-                mobile: this.phoneNum,
-                pwd: this.password,
-                code:this.inputVeri
-              },
+            data:{
+              mobile: this.phoneNum,
+              pwd: this.password,
+              code:this.inputVeri,
               session_key_1:tokenKey
-            }
+            },
           }
         ).then(
           response=> {

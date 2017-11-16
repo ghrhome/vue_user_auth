@@ -13,9 +13,9 @@
     </div>
     <div class="user-links-wrapper">
       <grid :cols="2">
-        <grid-item v-for="(nav,index) in navList" :link="nav.link" style="width:50%;" :class="{'no-right-line':((index+1)%2==0),'no-bottom-line':checkNavBottom(index)}" :key="index">
-          <img slot="icon" :src="nav.icon">
-          <span slot="label">{{nav.name}}</span>
+        <grid-item v-for="(nav,index) in navList" :link="nav.bannerLinkUrl" style="width:50%;" :class="{'no-right-line':((index+1)%2==0),'no-bottom-line':checkNavBottom(index)}" :key="index">
+          <img slot="icon" :src="nav.bannerLogoUrl">
+          <span slot="label">{{nav.bannerName}}</span>
         </grid-item>
 
        <!-- <grid-item link="test" style="width:50%;" class="no-right-line">
@@ -50,6 +50,10 @@
   import * as types from '../../store/mutation-types'
   import { Group, Cell, Grid, GridItem,Alert } from 'vux'
   import Swiper from '../../components/swiper.vue'
+  import mainConfig from '@/main_config'
+
+  const baseUrl=mainConfig.baseUrl;
+  const tokenKey=mainConfig.tokenKey;
 
   export default {
     components: {
@@ -123,7 +127,7 @@
         {
           method: 'get',
           headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-          url:  "./static/data/imglist.json",
+          url:  `${baseUrl}banner/getIndexBanner.htm`,
           params: {
             data:{
             },
@@ -134,16 +138,15 @@
         res=>{
           console.log(res)
           if (res.status == 200) {
-            var data = res.data;
-            console.log(data);
-           vm.setImgList(data.banner);
-           vm.setNavList(data.navList);
-           /* if(data.code==0){
-                vm.imgList=data
+            if(res.data.code==0){
+              var data = res.data.data;
+              console.log(data);
+              vm.setImgList(data.banner);
+              vm.setNavList(data.navList);
             }else{
-              vm.errorMessage=data.msg;
+              vm.errorMessage=res.data.msg;
               vm.showAlertMsg();
-            }*/
+            }
           }
           console.log(vm.imgList)
         }

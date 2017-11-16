@@ -6,7 +6,7 @@
   <div class="swiper-container">
     <div class="swiper-wrapper">
       <div class="swiper-slide" v-for="img in imgList">
-        <img :src="img.src"/>
+        <img :src="img.bannerLogoUrl"/>
       </div>
      <!-- <slot name="swiper-slide" class="swiper-slide"
             v-for="img in imgList"

@@ -89,13 +89,16 @@ http.get(baseUrl+'occ/getJsApiConfig.htm?'+'data={"url":"'+curUrl+'"}&session_ke
 
 function _checkLogin(cb){
     http({
-      method: 'get',
+      method: 'post',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
 
       url: baseUrl+'user/checkLogin.htm',
-      params: {
+     /* params: {
         session_key_1:tokenKey
-      },
+      },*/
+      data:{
+        session_key_1:tokenKey
+      }
     }).then(
       res=>{
         console.log(res);

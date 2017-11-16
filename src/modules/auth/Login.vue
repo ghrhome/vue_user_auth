@@ -93,16 +93,21 @@
 
         this.$http(
           {
-            method: 'get',
+            method: 'post',
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             url:  baseUrl+'user/login.htm',
-            params: {
+            /*params: {
               data:{
                 mobile: this.phoneNum,
                 pwd: this.password,
               },
               session_key_1:tokenKey
-            }
+            }*/
+            data:{
+              mobile: this.phoneNum,
+              pwd: this.password,
+              session_key_1:tokenKey
+            },
           }
         ).then(
           response=> {
