@@ -70,16 +70,21 @@
         }else{
           this.$http(
             {
-              method: 'get',
+              method: 'post',
               headers: {'Content-Type': 'application/x-www-form-urlencoded'},
               url:  baseUrl+'user/update.htm',
-              params: {
+              /*params: {
                 data:{
                   'type':'name',
                   'value':vm.tmpName
                 },
                 session_key_1:tokenKey
-              }
+              }*/
+              data:{
+                'type':'name',
+                'value':vm.tmpName,
+                'session_key_1':tokenKey
+              },
             }
           ).then(
             res=>{

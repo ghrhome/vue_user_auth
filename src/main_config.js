@@ -4,7 +4,7 @@
 /*const baseUrl='http://www.powerlongmuseum.com/artWeb/authLink/1/'*/
 /*const baseUrl='http://plocc.powerlong.com/artWeb/authLink/1/';*/
 
-let _env='dev'; //dev/product
+let _env='product'; //dev/product
 let baseUrl;
 
 var tokenKey=localStorage.getItem('tokenKey')||'';
@@ -13,7 +13,7 @@ var isLogin=localStorage.getItem('isLogin')||false;
 if(_env=='dev'){
   baseUrl='http://jdlabtest.yueworld.cn/jdlabWeb/authLink/1/'
 }else{
-  baseUrl='http://www.powerlongmuseum.com/artWeb/authLink/1/'
+  baseUrl='http://jdlabtest.yueworld.cn/jdlabWeb/authLink/1/'
 }
 
 export default {

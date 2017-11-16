@@ -112,6 +112,13 @@
         ).then(
           response=> {
             console.log(response);
+            if(response.data.code==100){
+              console.log("..............")
+              console.log(response.data.msg)
+              this.errorMessage = response.data.msg;
+              this.showAlertMsg();
+              return false;
+            }
             var not_verified = (response.data.code==1);
             if (not_verified) {
               console.log("..............")

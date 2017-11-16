@@ -124,16 +124,14 @@
 
         this.$http(
           {
-            method: 'get',
+            method: 'post',
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
 
             url: baseUrl+'user/sendSmsForVerifyCode.htm',
-            params: {
-              data:{
-                mobile: this.phoneNum,
-                validateMobile:true,
-                channel:'resetPwd'
-              },
+            data:{
+              mobile: this.phoneNum,
+              validateMobile:true,
+              channel:'resetPwd',
               session_key_1:tokenKey
             },
           }
@@ -178,21 +176,27 @@
 
         this.$http(
           {
-            method: 'get',
+            method: 'post',
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             url:  baseUrl+'user/resetpwd.htm',
-            params: {
-              data:{
-                mobile: this.phoneNum,
-                pwd: this.password,
-                code:this.inputVeri
-              },
+            data:{
+              mobile: this.phoneNum,
+              pwd: this.password,
+              code:this.inputVeri,
               session_key_1:tokenKey
-            }
+            },
           }
         ).then(
           response=> {
           console.log(response);
+          if(response.data.code==100){
+              console.log("..............")
+              console.log(response.data.msg)
+              this.errorMessage = response.data.msg;
+              this.showAlertMsg();
+              return false;
+            }
+
           var not_verified = (response.data.code==1);
 
           if (not_verified) {

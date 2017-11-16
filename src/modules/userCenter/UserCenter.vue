@@ -125,14 +125,16 @@
       let vm=this;
       vm.$http(
         {
-          method: 'get',
+          method: 'post',
           headers: {'Content-Type': 'application/x-www-form-urlencoded'},
           url:  `${baseUrl}banner/getIndexBanner.htm`,
-          params: {
-            data:{
-            },
-            //session_key_1:tokenKey
-          }
+          data:{
+            session_key_1:tokenKey
+          },
+         /* params: {
+
+            //
+          }*/
         }
       ).then(
         res=>{

@@ -113,16 +113,22 @@
 
         this.$http(
           {
-            method: 'get',
+            method: 'post',
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
 
             url: baseUrl+'user/sendSmsForVerifyCode.htm',
-            params: {
+           /* params: {
               data:{
                 mobile: this.tmpPhone,
                 validateMobile:true,
                 channel:'register'
               },
+              session_key_1:tokenKey
+            },*/
+            data:{
+              mobile: this.tmpPhone,
+              validateMobile:true,
+              channel:'register',
               session_key_1:tokenKey
             },
           }
@@ -168,17 +174,23 @@
 
           this.$http(
             {
-              method: 'get',
+              method: 'post',
               headers: {'Content-Type': 'application/x-www-form-urlencoded'},
               url:  baseUrl+'user/update.htm',
-              params: {
+              /*params: {
                 data:{
                   'type':'mobile',
                   'value':vm.tmpPhone,
                   'code':vm.inputVeri
                 },
                 session_key_1:tokenKey
-              }
+              }*/
+              data:{
+                'type':'mobile',
+                'value':vm.tmpPhone,
+                'code':vm.inputVeri,
+                'session_key_1':tokenKey
+              },
             }
           ).then(
             res=>{

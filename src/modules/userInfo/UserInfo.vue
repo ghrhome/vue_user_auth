@@ -95,14 +95,18 @@
         let vm=this;
         this.$http(
           {
-            method: 'get',
+            method: 'post',
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             url:  baseUrl+'user/logout.htm',
-            params: {
+            /*params: {
               data:{
               },
               session_key_1:tokenKey
-            }
+            }*/
+            data:{
+              session_key_1:tokenKey
+            },
+
           }
         ).then(
           res=>{
@@ -172,16 +176,22 @@
         console.log(val);
         this.$http(
           {
-            method: 'get',
+            method: 'post',
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             url:  baseUrl+'user/update.htm',
-            params: {
+            /*params: {
               data:{
                 'type':type,
                 'value':val
               },
               session_key_1:tokenKey
-            }
+            }*/
+            data:{
+              'type':type,
+              'value':val,
+              'session_key_1':tokenKey
+            },
+
           }
         ).then(
           res=>{
